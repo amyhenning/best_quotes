@@ -4,7 +4,14 @@ class QuotesController < Rulers::Controller
   end
 
   def a_quote
-    "There is nothing either good or bad, but thinking makes it so." +
-    "\n<pre>\n#{env}\n</pre>" # Ch 2, exercise 1 => Inspecting the Rack env
+    render :a_quote, :noun => :winking
+  end
+
+  def request_info # Ch 4, exercise 2
+    render :request_info, {
+      user_agent: @env["HTTP_USER_AGENT"],
+      path_info: @env["PATH_INFO"],
+      request_method: @env["REQUEST_METHOD"]
+    }
   end
 end
